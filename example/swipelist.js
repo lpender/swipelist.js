@@ -7,10 +7,10 @@
 				$ArrowRight = $('.swipe-list-right');
 
 		var options = {
-			slideRange : [170,220], // max/min heights
+			slideRange : [170,220], // max/min widths
 			bSlideGroup : false,  // Whether to slide as a group
 			bPaginationGroup : false,
-			arrows: true
+			arrows: true // whether to allow arrow control
 		};
 
 

@@ -30,9 +30,12 @@ Inlcude the swipelist.js file afterwards, and initialize swiper with param:
 
 i.e.
 
+```
 new Swiper('.swiper-container', {
   swipelist:true
 });
+
+```
 
 You can set the min/max slide-width with the slideRange param in swipelist.js.
 

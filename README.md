@@ -1,49 +1,54 @@
-SwipeList
-=========
+swipelist.js
+==============
 
-Responsive swiper plugin, works with iDangerous Swiper (nolimits4web/swiper) to allow a swipeable list of thumbnails to control a swiper.
+About
+--------------
 
-Notes : the swiper will auto adjust the number of slides: however use "oConfig.oSwiperOptions.slidesPerView" to control the number of slides in the view AT TIME OF PAGE LOAD.  
+URL: [https://github.com/lpender/swipelist.js](https://github.com/lpender/swipelist.js)
 
-If you use a client-side image loader, you may want to use a high number (the most it could possibly show), so that you aren't loading huge images unnecessarily.
+Author: [lpender](https://github.com/lpender)
 
-Usage :
 
-HTML:
-<div class="swipe-list-container">
-    <div class="icon-arrow-left">
-    <div class="swiper-container">
-        <div class="swiper-wrapper"?
-           <div class="swiper-slide">
-           </div>
-        </div>
-    </div>
-    <div class="icon-arrow-right">
-</div>
 
-CSS:
-include links to css/components/idangerous-swiper-2.css
+Build from source
+--------------
 
-JS:
-dependencies:
-/js/components/jQuery/idangerous/swiper-2-2.js
+In order to build your generated AMD module from its source, you will also need Grunt. To install Grunt globally on the command line (and run the above build task), run:
 
-init:
+```
+npm install -g grunt-cli
+```
 
-var mySwipeList = new SwipeList('.swipe-list-container', options);
+Once you have generated your AMD module skeleton, you can build the minified files, the documentation and the example with Grunt:
 
-options:
+```
+grunt build
+```
 
-sSwiperContainer: string|node selector for swiper-container (
-sArrowRight : string|node selector for arrow right
-sArrowLeft : string|node selector for arrow left
-arrows : boolean true or false / if false, ignore arrows (use this to set your own arrow behavior... i.e 1 at a time)
-slideRange : array|number min/max allowed slidewidth (will adjust # of slides per group based on desired width)
-paddingBottom : number padding to add to bottom
-bSlideGroup : whether to group slides firmly to pages.  I.e. if 8 slides, only allow viewing 1-4 and 5-8,
-bPaginationGroup : same as with slideGroup, limits the pagination dots to the slidegroup pages.
-oSwiperOptions : Swiper Options (see http://www.idangero.us/sliders/swiper/api.php)
+You can also launch the `grunt serve` task to load the "example" folder in your browser and benefit from livereload of the page in the browser once you edit one of your source file or one of the example files:
 
-public methods :
+```
+grunt serve
+```
 
-getVisibleRange(optional swiper ) : return array, the visible range of slides
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+
+
+Credits
+--------------
+
+swipelist.js was initiated with [generator-amd](https://github.com/T1st3/generator-amd), a [Yeoman](http://yeoman.io) generator that builds an AMD module boilerplate.
+
+This project uses the following as development dependencies:
+
+* [JSHint](http://jshint.com)
+* [JSCS](https://npmjs.org/package/jscs)
+* [UglifyJS](http://marijn.haverbeke.nl/uglifyjs)
+* [JSDoc](http://usejsdoc.org)
+
+
+
+License
+--------------
+
+[License](https://github.com/lpender/swipelist.js/blob/master/LICENSE)

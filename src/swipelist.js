@@ -26,11 +26,11 @@
 			}
 
 			// Check if there are slides
-			checkSlides();
+			//checkSlides();
 
-			// attach listeners to update the views
 			updateView();
 
+			// attach listeners to update the views
 			$(window).on('resize', function () {  // changed back to resize because was getting some issues in slideshowHG sizing down from
 				updateView();
 			});
@@ -187,10 +187,9 @@
 				updateArrows();
 			},
 			onSwiperCreated : function () {
-				console.log('firstinit');
-				//updateView();
-				//swiper.reInit();
 				init();
+				// Have to do this to get the height to calculate correctly (don't know why)
+				$(window).resize();
 			}
 		};
 	};

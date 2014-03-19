@@ -11,6 +11,14 @@
 	</head>
 	<body>
     <style>
+
+        @import url(http://weloveiconfonts.com/api/?family=entypo);
+
+        /* entypo */
+        [class*="entypo-"]:before {
+            font-family: 'entypo', sans-serif;
+        }
+
         body {
             font-family: helvetica, 'helvetica neue', arial, sans-serif;
             -webkit-user-select: none;
@@ -27,34 +35,50 @@
             text-decoration: underline;
         }
         img {width:100%;height:auto;}
-        .arrow {font-size:40px; cursor:pointer;}
+        .arrow {font-size:75px; cursor:pointer; padding:20px; position:absolute; top:0;}
         .arrow.inactive {opacity: 0.5;}
-        .swipe-list-right {float:right;}
+        .swipe-list-right {right:0;}
         .swiper-slide {padding:20px;box-sizing:border-box;}
+        .comment {
+            font-size:10px;
+            color: #333;
+            padding: 12px;
+        }
+        .swiper-container {
+            cursor: -webkit-grab;
+        }
+        .swiper-container:active {
+            cursor: -webkit-grabbing;
+        }
     </style>
+    <div style="padding:10px 20px;">
         <h1><a href="http://www.github.com/lpender/swipelistjs">swipelist.js</a></h1>
         <p>swipe with mouse or finger. <br/><br/>try resizing your window!</p>
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="/img/slide-1.jpg" alt="" />Slide 1</div>
-                <div class="swiper-slide"><img src="/img/slide-2.jpg" alt="" />Slide 2</div>
-                <div class="swiper-slide"><img src="/img/slide-3.png" alt="" />Slide 3</div>
-                <div class="swiper-slide"><img src="/img/slide-5.jpg" alt="" />Slide 4</div>
-                <div class="swiper-slide"><img src="/img/slide-6.jpg" alt="" />Slide 5</div>
-                <div class="swiper-slide"><img src="/img/slide-7.jpg" alt="" />Slide 6</div>
-            </div>
-            <!--
-            <div class="playlist-not-added row">
-                <p class="header-title">We're sorry, there are no featured videos</p>
-            </div>
-            -->
+    </div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="/img/slide-1.jpg" alt="" />Slide 1</div>
+            <div class="swiper-slide"><img src="/img/slide-2.jpg" alt="" />Slide 2</div>
+            <div class="swiper-slide"><img src="/img/slide-3.png" alt="" />Slide 3</div>
+            <div class="swiper-slide"><img src="/img/slide-5.jpg" alt="" />Slide 4</div>
+            <div class="swiper-slide"><img src="/img/slide-6.jpg" alt="" />Slide 5</div>
+            <div class="swiper-slide"><img src="/img/slide-7.jpg" alt="" />Slide 6</div>
         </div>
-        <a class="swipe-list-right arrow">&gt;</a>
-        <a class="swipe-list-left arrow">&lt;</a>
+        <!--
+        <div class="playlist-not-added row">
+            <p class="header-title">We're sorry, there are no featured videos</p>
+        </div>
+        -->
+    </div>
+    <div style="position:relative">
+        <a class="swipe-list-right arrow entypo-right-open-big"></a>
+        <a class="swipe-list-left arrow entypo-left-open-big"></a>
+    </div>
 
-    <div>
-        Min slide width: <input id="min" placeholder="minimum slide width" onblur="window.initSwipelist();" value="300"/> <br/>
-        Max slide width: <input id="max" placeholder="maximum slide width" onblur="window.initSwipelist();" value="300" />
+    <div style="text-align:center;padding-top:20px;">
+        Min slide width: <input id="min" placeholder="minimum slide width" onblur="window.initSwipelist();" value="300" style="width:50px;"/> <br/>
+        Max slide width: <input id="max" placeholder="maximum slide width" onblur="window.initSwipelist();" value="300" style="width:50px;"/> <br/>
+        <div class="comment">Note: Min may equal max.<br/>swipelist will err on the side of a bit too big</comment>
     </div>
 
         <script type="text/javascript" src="jquery.min.js"></script>
@@ -68,8 +92,14 @@
 
                 if (isNaN(min) || isNaN(max)) {
                     alert('please enter a number!');
-                    $('#min').attr('value', 300);
-                    $('#max').attr('value', 300);
+                    $('#min').val(300);
+                    $('#max').val(300);
+                }
+
+                if (min > max) {
+                    alert('keep min less than max :)');
+                    $('#min').val(300);
+                    $('#max').val(300);
                 }
 
                 if (window.mySwiper) {

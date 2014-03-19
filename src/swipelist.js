@@ -124,7 +124,7 @@
 		function updateView () {
 			console.log('updateView');
 			var nTotalWidth = $(swiper.container).width(),
-					newSlideWidth = nTotalWidth;
+					newSlideWidth = nTotalWidth/swiper.params.slidesPerView;
 			console.log('updateView', nTotalWidth);
 
 			while (newSlideWidth > swiper.params.swipeListOpts.slideRange[1]) {

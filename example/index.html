@@ -12,8 +12,10 @@
 	<body>
     <style>
         img {width:100%;height:auto;}
-        .swipe-list-left {font-size:40px; cursor:pointer;}
-        .swipe-list-right {font-size:40px; cursor:pointer; float:right;}
+        .arrow {font-size:40px; cursor:pointer;}
+        .arrow.inactive {opacity: 0.5;}
+        .swipe-list-right {float:right;}
+
     </style>
         <div class="swiper-container">
             <div class="swiper-wrapper">
@@ -32,8 +34,8 @@
             </div>
             -->
         </div>
-        <a class="swipe-list-right">&gt;</a>
-        <a class="swipe-list-left">&lt;</a>
+        <a class="swipe-list-right arrow">&gt;</a>
+        <a class="swipe-list-left arrow">&lt;</a>
 
         <!--<script type="text/javascript" data-main="app" src="require-2.1.10.min.js"></script>-->
         <script type="text/javascript" src="jquery.min.js"></script>

@@ -8,6 +8,17 @@ URL: [https://github.com/lpender/swipelist.js](https://github.com/lpender/swipel
 
 Author: [lpender](https://github.com/lpender)
 
+Swipelist is a responsive plugin for the [iDangerous Swiper](https://github.com/nolimits4web/Swiper).
+
+It operates on the principle that, when designing responsively, the number of slides displayed within a swiper should be calculated based on requirements for the minimum/maximum width of the slides.
+
+As such, you configure it, not by setting the number of slides per view, but my setting a range for the desired widths of the slides.
+
+For example, setting slideRange to [120,140], will cause the swiper to add a slide when the width of each slide goes above 140, or to remove a slide, when it goes below 120.
+
+If Swipelist cannot set the slides in that range, it will round up.
+
+See the example in /example/.
 
 
 Build from source

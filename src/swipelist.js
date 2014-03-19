@@ -111,20 +111,17 @@
 		 * Update the number of slides, upon resizing the image
 		 */
 		function updateView () {
+			console.log('updateView');
 			var nTotalWidth = $(swiper.container).width(),
 					newSlideWidth = nTotalWidth;
 			console.log('updateView', nTotalWidth);
 
 			while (newSlideWidth > options.slideRange[1]) {
-				console.log(newSlideWidth);
 				swiper.params.slidesPerView++;
-				console.log(swiper.params.slidesPerView);
 				newSlideWidth = nTotalWidth/swiper.params.slidesPerView;
 			}
 			while (newSlideWidth < options.slideRange[0]) {
-				console.log(newSlideWidth);
 				swiper.params.slidesPerView--;
-				console.log(swiper.params.slidesPerView);
 				newSlideWidth = nTotalWidth/swiper.params.slidesPerView;
 			}
 
@@ -136,15 +133,14 @@
 			swiper.params.createPagination = false;
 
 			// Re Init the swiper
-			console.log(swiper.params);
-			swiper.reInit();
+			swiper.reInit();  // This triggers "firstInit" for some reason
 			swiper.swipeTo(getVisibleRange()[0]); // this doesn't actually swipe to the right place... need to swipe to the active page (hmm)
-			updatePagination();
+			updatePagination();  // update the pagination if in 'slidesPerGroup' mode and only want to show the number of groups
 			updateArrows(); // Make sure the arrows are enabled/disabled correctly
 		}
 
 		/**
-		 * Check if slides exist, and hide/show 'no slides' div accordingly
+		 * Check if slides exist, and hide/show 'no slides' div accordingly (wip)
 		 */
 		function checkSlides () {
 			console.log('checkSlides');
@@ -157,6 +153,10 @@
 			}
 		}
 
+		/**
+		 * Required to get the currently visible slides
+		 * @returns {number []} [ startIndex, endIndex ]
+		 */
 		function getVisibleRange () {
 			console.log('getVisibleRange');
 			var nItemsPerView = swiper.params.slidesPerView,
@@ -188,8 +188,7 @@
 			},
 			onSwiperCreated : function () {
 				init();
-				// Have to do this to get the height to calculate correctly (don't know why)
-				$(window).resize();
+				$(window).resize(); // Have to do this to get the height to calculate correctly on the first go (I don't know why)
 			}
 		};
 	};

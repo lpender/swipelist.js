@@ -13,6 +13,7 @@
 			arrows: true // whether to allow arrow control
 		};
 
+		$.extend(options, swiper.params);
 
 		/**
 		 * Initialize the swipelist functionality

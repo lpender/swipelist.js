@@ -11,6 +11,13 @@
 	</head>
 	<body>
     <style>
+        body {
+            font-family: helvetica, 'helvetica neue', arial, sans-serif;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
         img {width:100%;height:auto;}
         .arrow {font-size:40px; cursor:pointer;}
         .arrow.inactive {opacity: 0.5;}
@@ -25,8 +32,7 @@
                 <div class="swiper-slide"><img src="/img/slide-4.jpg" alt="" />Slide 4</div>
                 <div class="swiper-slide"><img src="/img/slide-5.jpg" alt="" />Slide 5</div>
                 <div class="swiper-slide"><img src="/img/slide-6.jpg" alt="" />Slide 6</div>
-                <div class="swiper-slide"><img src="/img/slide-7.png" alt="" />Slide 7</div>
-                <div class="swiper-slide"><img src="/img/slide-8.jpg" alt="" />Slide 8</div>
+                <div class="swiper-slide"><img src="/img/slide-7.jpg" alt="" />Slide 7</div>
             </div>
             <!--
             <div class="playlist-not-added row">
@@ -37,17 +43,14 @@
         <a class="swipe-list-right arrow">&gt;</a>
         <a class="swipe-list-left arrow">&lt;</a>
 
-        <!--<script type="text/javascript" data-main="app" src="require-2.1.10.min.js"></script>-->
         <script type="text/javascript" src="jquery.min.js"></script>
         <script type="text/javascript" src="idangerous.swiper.js"></script>
         <script type="text/javascript" src="swipelist.js"></script>
         <script>
             window.mySwiper = new Swiper('.swiper-container', {
                 swipelist:true,
-                calculateHeight: true,
-                onFirstInit: function(swiper) {
-                    console.log(swiper);
-                }
+                slideRange: [300,300],
+                calculateHeight: true
             });
         </script>
 	</body>

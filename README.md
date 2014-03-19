@@ -20,6 +20,24 @@ If Swipelist cannot set the slides in that range, it will round up.
 
 Run `grunt serve` to see the example! (/example/index.html)
 
+Usage:
+
+Requires jQuery and iDangerous Swiper.
+
+Inlcude the swipelist.js file afterwards, and initialize swiper with param:
+
+`swipelist:true`
+
+i.e.
+
+new Swiper('.swiper-container', {
+  swipelist:true
+});
+
+You can set the min/max slide-width with the slideRange param in swipelist.js.
+
+More coming soon...
+
 
 Build from source
 --------------

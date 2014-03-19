@@ -18,7 +18,7 @@ For example, setting slideRange to [120,140], will cause the swiper to add a sli
 
 If Swipelist cannot set the slides in that range, it will round up.
 
-See the example in /example/.
+Run `grunt serve` to see the example! (/example/index.html)
 
 
 Build from source

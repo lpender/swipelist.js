@@ -6,14 +6,26 @@
 				$ArrowLeft = $('.swipe-list-left'),
 				$ArrowRight = $('.swipe-list-right');
 
-		var options = {
+		var defaults = {
 			slideRange : [170,220], // max/min widths
 			bSlideGroup : false,  // Whether to slide as a group
 			bPaginationGroup : false,
 			arrows: true // whether to allow arrow control
 		};
 
-		$.extend(options, swiper.params);
+		// Set defaults, if not set.
+		for (var opt in defaults) {
+			if (!swiper.params.swipeListOpts.hasOwnProperty(opt)) {
+				swiper.params.swipeListOpts[opt] = defaults[opt];
+			}
+		}
+
+		// Enforce minimum less than or equal to maximum
+		if (swiper.params.swipeListOpts.slideRange[0] > swiper.params.swipeListOpts.slideRange[1]) {
+			console.error ( 'Swiper swipelist: minimum must  be less than maximum');
+			swiper.params.swipeListOpts.slideRange = defaults['slideRange'];
+		}
+
 
 		/**
 		 * Initialize the swipelist functionality
@@ -22,19 +34,17 @@
 			console.log('init');
 
 			// Init arrow listeners if there are left/right arrows
-			if (options.arrows) {
+			if (swiper.params.swipeListOpts.arrows) {
 				initArrowListeners()
 			}
 
 			// Check if there are slides
 			//checkSlides();
 
-			updateView();
+			//updateView();
 
-			// attach listeners to update the views
-			$(window).on('resize', function () {  // changed back to resize because was getting some issues in slideshowHG sizing down from
-				updateView();
-			});
+			// necessary to get the right height
+			swiper.reInit();
 		}
 
 		/**
@@ -88,7 +98,7 @@
 		 */
 		function updatePagination () {
 			console.log('updatePagination');
-			if ( options.bPaginationGroup && swiper.params.pagination) {
+			if ( swiper.params.swipeListOpts.bPaginationGroup && swiper.params.pagination) {
 				var arrDots = swiper.paginationButtons,
 					nDots = arrDots.length,
 					nDotsPerPage = swiper.params.slidesPerGroup;
@@ -117,24 +127,26 @@
 					newSlideWidth = nTotalWidth;
 			console.log('updateView', nTotalWidth);
 
-			while (newSlideWidth > options.slideRange[1]) {
+			while (newSlideWidth > swiper.params.swipeListOpts.slideRange[1]) {
 				swiper.params.slidesPerView++;
 				newSlideWidth = nTotalWidth/swiper.params.slidesPerView;
 			}
-			while (newSlideWidth < options.slideRange[0]) {
+			while (newSlideWidth < swiper.params.swipeListOpts.slideRange[0]) {
 				swiper.params.slidesPerView--;
 				newSlideWidth = nTotalWidth/swiper.params.slidesPerView;
 			}
 
 			swiper.params.slidesPerView < 1 ? swiper.params.slidesPerView = 1 : false;
 
-			if (options.bSlideGroup) {
+			if (swiper.params.swipeListOpts.bSlideGroup) {
 				swiper.params.slidesPerGroup = swiper.params.slidesPerView;
 			}
 			swiper.params.createPagination = false;
 
 			// Re Init the swiper
-			swiper.reInit();  // This triggers "firstInit" for some reason
+			console.log('initting with slidesPerView: ' + swiper.params.slidesPerView);
+			swiper.justUpped = true;
+			swiper.reInit(true);  // This triggers "firstInit" for some reason???
 			swiper.swipeTo(getVisibleRange()[0]); // this doesn't actually swipe to the right place... need to swipe to the active page (hmm)
 			updatePagination();  // update the pagination if in 'slidesPerGroup' mode and only want to show the number of groups
 			updateArrows(); // Make sure the arrows are enabled/disabled correctly
@@ -187,9 +199,15 @@
 				updatePagination();
 				updateArrows();
 			},
+			onInit: function () {
+				if(!swiper.justUpped) {
+					updateView();
+					swiper.justUpped = false;
+				}
+				$(window).resize();
+			},
 			onSwiperCreated : function () {
 				init();
-				$(window).resize(); // Have to do this to get the height to calculate correctly on the first go (I don't know why)
 			}
 		};
 	};

@@ -3,7 +3,8 @@ require.config({
 	baseUrl: '',
 	paths: {
 		jquery: 'jquery.min',
-		swipelist: 'swipelist'
+		swipelist: 'swipelist',
+		swiper : 'idangerous.swiper'
 	},
 	shim: {
 		jquery: {

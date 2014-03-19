@@ -1,9 +1,10 @@
 {
   "name": "swipelist.js",
   "version": "0.1.0",
-  "main": "dist/swipelist.js.min.js",
+  "main": "dist/swipelist.min.js",
   "dependencies": {
-    "jquery": "2.0.3"
+    "jquery": "2.0.3",
+		"swiper" : "2.4.0"
   },
   "ignore": [
     "node_modules",

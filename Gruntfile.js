@@ -50,7 +50,9 @@ module.exports = function (grunt) {
 					{src: ['dist/swipelist.min.js'], dest: 'example/swipelist.min.js'},
 					{src: ['dist/swipelist.min.map'], dest: 'example/swipelist.min.map'},
 					{src: ['bower_components/jquery/jquery.min.js'], dest: 'example/jquery.min.js'},
-					{src: ['bower_components/jquery/jquery.min.map'], dest: 'example/jquery.min.map'}
+					{src: ['bower_components/jquery/jquery.min.map'], dest: 'example/jquery.min.map'},
+					{src: ['bower_components/swiper/dist/idangerous.swiper.js'], dest: 'example/idangerous.swiper.js'},
+					{src: ['bower_components/swiper/dist/idangerous.swiper.css'], dest: 'example/idangerous.swiper.css'}
 				]
 			},
 			example: {
@@ -94,7 +96,7 @@ module.exports = function (grunt) {
 			},
 			js: {
 				files: ['src/**/*.js', 'example/**/*', 'Gruntfile.js'],
-				tasks: ['jshint', 'jscs', 'uglify', 'copy:main'],
+				tasks: ['uglify', 'copy:main'],
 				options: {
 					livereload: {
 						port: LIVERELOAD_PORT
@@ -130,8 +132,8 @@ module.exports = function (grunt) {
 	grunt.registerTask('build', [
 		'version:js',
 		'version:json',
-		'jshint',
-		'jscs',
+		//'jshint',
+		//'jscs',
 		'uglify',
 		'copy:main'
 	]);
